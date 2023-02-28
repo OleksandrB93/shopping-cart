@@ -4,6 +4,7 @@ import { Home } from "./pages/Home";
 import { Store } from "./pages/Store";
 import { About } from "./pages/About";
 import { Navbar } from "./components/Navbar";
+import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 
 // const Home = lazy(() => import('./pages/Home'));
 // const Store = lazy(() => import('./pages/Store'));
@@ -11,6 +12,7 @@ import { Navbar } from "./components/Navbar";
 
 function App() {
   return (
+    <ShoppingCartProvider>
     <Routes>
       <Route path="/" element={<Navbar />}>
         <Route index element={<Home />} />
@@ -19,6 +21,7 @@ function App() {
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
+    </ShoppingCartProvider>
   );
 }
 

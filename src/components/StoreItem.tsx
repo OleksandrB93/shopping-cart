@@ -1,3 +1,4 @@
+import { useShoppingCart } from "../context/ShoppingCartContext";
 import { formatCurrency } from "../utilities/formatCurrency";
 
 type Props = {
@@ -8,7 +9,14 @@ type Props = {
 };
 
 export function StoreItem({ id, name, price, imgUrl }: Props) {
-  const quantity = 0;
+  const {
+    getItemQuantity,
+    increseCartQuantity,
+    decreseCartQuantity,
+    removeFromCart,
+  } = useShoppingCart();
+
+  const quantity = getItemQuantity(id);
   return (
     <div className="pb-2">
       <img
@@ -22,13 +30,14 @@ export function StoreItem({ id, name, price, imgUrl }: Props) {
       </div>
       <div className="flex justify-center">
         {quantity === 0 ? (
-          <button className="w-full  bg-sky-700 text-sky-50 rounded-md mx-4">
+          <button onClick={()=>increseCartQuantity(id)} className="w-full  bg-sky-700 text-sky-50 rounded-md mx-4">
             + Add To Cart
           </button>
         ) : (
           <div className="flex justify-center items-center flex-col">
             <div className="flex">
               <button
+              onClick={()=>decreseCartQuantity(id)} 
                 type="button"
                 className="bg-sky-700 text-sky-50 rounded-md px-[10px] mr-2"
               >
@@ -38,6 +47,7 @@ export function StoreItem({ id, name, price, imgUrl }: Props) {
                 <span>{quantity}</span>in cart
               </div>
               <button
+              onClick={()=>increseCartQuantity(id)} 
                 type="button"
                 className="bg-sky-700 text-sky-50 rounded-md px-2 ml-2"
               >
@@ -46,6 +56,7 @@ export function StoreItem({ id, name, price, imgUrl }: Props) {
             </div>
             <div className="mt-2">
               <button
+              onClick={()=>removeFromCart(id)} 
                 type="button"
                 className=" bg-rose-700 text-sky-50 rounded-md px-2"
               >
