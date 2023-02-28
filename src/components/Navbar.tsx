@@ -1,8 +1,10 @@
 import { Suspense } from "react";
 import { Outlet, NavLink } from "react-router-dom";
 import { SlBasket } from "react-icons/sl";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export function Navbar() {
+  const { openCart, cartQuantity } = useShoppingCart();
   return (
     <div>
       <nav className="flex sticky top-0 items-center bg-slate-100 drop-shadow-md mb-4 py-2 px-6">
@@ -17,14 +19,17 @@ export function Navbar() {
         </NavLink>
 
         <div className="relative ml-auto">
-          <button
-            type="button"
-            className="hover:bg-sky-700 hover:text-white border-solid border-[1px] border-sky-700 rounded-full p-2"
-          >
-            <SlBasket size={25} className="text-white-900 " />
-          </button>
+          {cartQuantity > 0 && (
+            <button
+              onClick={openCart}
+              type="button"
+              className="hover:bg-sky-700 hover:text-white border-solid border-[1px] border-sky-700 rounded-full p-2"
+            >
+              <SlBasket size={25} className="text-white-900 " />
+            </button>
+          )}
           <div className="absolute text-white top-6 left-6 bg-rose-600 border-[1px] border-rose-700 rounded-full py-0 px-2">
-            5
+            {cartQuantity}
           </div>
         </div>
       </nav>
