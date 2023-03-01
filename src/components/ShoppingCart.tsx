@@ -37,10 +37,7 @@ export function ShoppingCart({ isOpen }: Props) {
                 <CartItem key={item.id} {...item} />
               ))}
             </div>
-          </div>
-        </div>
-      )}
-      <div className="ms-auto fw-bold fs-5">
+      <div className="flex justify-end ms-auto fw-bold fs-5 mr-4">
         Total{" "}
         {formatCurrency(
           cartItems.reduce((total, cartItem) => {
@@ -49,6 +46,9 @@ export function ShoppingCart({ isOpen }: Props) {
           }, 0)
         )}
       </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
