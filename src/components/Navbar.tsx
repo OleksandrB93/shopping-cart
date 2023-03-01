@@ -3,11 +3,12 @@ import { Outlet, NavLink } from "react-router-dom";
 import { SlBasket } from "react-icons/sl";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 
+
 export function Navbar() {
   const { openCart, cartQuantity } = useShoppingCart();
   return (
     <div>
-      <nav className="flex sticky top-0 items-center bg-slate-100 drop-shadow-md mb-4 py-2 px-6">
+      <nav className="flex sticky top-0 z-20 items-center bg-slate-100 drop-shadow-md mb-4 py-2 px-6">
         <NavLink className="mx-4  ml-0" to={"/"}>
           Home
         </NavLink>

@@ -18,7 +18,7 @@ export function StoreItem({ id, name, price, imgUrl }: Props) {
 
   const quantity = getItemQuantity(id);
   return (
-    <div className="pb-2">
+    <div className="relative pb-12">
       <img
         className="w-full h-[200px] rounded-md object-cover"
         src={imgUrl}
@@ -28,37 +28,41 @@ export function StoreItem({ id, name, price, imgUrl }: Props) {
         <p>{name}</p>
         <p>{formatCurrency(price)}</p>
       </div>
-      <div className="flex justify-center">
+      <div className="absolute inset-x-0 bottom-0 h-12 flex justify-center">
         {quantity === 0 ? (
-          <button onClick={()=>increaseCartQuantity(id)} className="w-full  bg-sky-700 text-sky-50 rounded-md mx-4">
+          <button
+            onClick={() => increaseCartQuantity(id)}
+            className="w-full h-8  bg-sky-700 text-sky-50 rounded-md mx-4"
+          >
             + Add To Cart
           </button>
         ) : (
           <div className="flex justify-center items-center flex-col">
             <div className="flex">
               <button
-              onClick={()=>decreaseCartQuantity(id)} 
+                onClick={() => decreaseCartQuantity(id)}
                 type="button"
                 className="bg-sky-700 text-sky-50 rounded-md px-[10px] mr-2"
               >
                 -
               </button>
               <div>
-                <span>{quantity}</span>in cart
+                <span className="text-sm">{quantity}</span>
+                <span className="text-sm"> in cart</span>
               </div>
               <button
-              onClick={()=>increaseCartQuantity(id)} 
+                onClick={() => increaseCartQuantity(id)}
                 type="button"
                 className="bg-sky-700 text-sky-50 rounded-md px-2 ml-2"
               >
                 +
               </button>
             </div>
-            <div className="mt-2">
+            <div className="flex items-center">
               <button
-              onClick={()=>removeFromCart(id)} 
+                onClick={() => removeFromCart(id)}
                 type="button"
-                className=" bg-rose-700 text-sky-50 rounded-md px-2"
+                className="text-xs bg-rose-700 text-sky-50 rounded-md  px-2"
               >
                 remove
               </button>

@@ -12,14 +12,15 @@ export function CartItem({ id, quantity }: CartItemProps) {
   const item = storeItems.find((i) => i.id === id);
   if (item == null) return null;
   return (
-    <div className="flex items-center mx-2">
+<div>
+<div className="flex items-center m-2">
       <img
-        className="w-[125px] h-[75px] object-cover"
+        className="w-[110px] h-[75px] object-cover"
         src={item.imgUrl}
         alt="cart"
       />
-      <div>
-        <div className="">
+      <div className="pl-2">
+        <div className="text-sm">
           {item.name}
           {"  "}
           {quantity > 1 && (
@@ -34,7 +35,7 @@ export function CartItem({ id, quantity }: CartItemProps) {
         </div>
       </div>
       <div className="flex items-center ml-auto">
-        <div>{formatCurrency(item.price * quantity)}</div>
+        <div className="text-xs">{formatCurrency(item.price * quantity)}</div>
         <button
           className=" bg-slate-400 rounded-md px-2 ml-[2px]"
           onClick={() => removeFromCart(item.id)}
@@ -42,6 +43,8 @@ export function CartItem({ id, quantity }: CartItemProps) {
           X
         </button>
       </div>
+           
     </div>
+</div>
   );
 }
