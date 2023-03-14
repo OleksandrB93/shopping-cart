@@ -16,7 +16,7 @@ export function CartItem({ id, quantity }: CartItemProps) {
 <div className="flex items-center m-2">
       <img
         className="w-[110px] h-[75px] object-cover"
-        src={item.imgUrl}
+        src={process.env.PUBLIC_URL + item.imgUrl}
         alt="cart"
       />
       <div className="pl-2">
